@@ -1,0 +1,28 @@
+package <%- packageName %>
+
+import android.content.Context
+
+/**
+ * Central initialization point for the company framework modules selected when this
+ * project was generated. Each enabled module exposes an initializer that is invoked here.
+ *
+ * Selected modules:
+<% if (modules.length === 0) { -%>
+ *   (none)
+<% } else { -%>
+<% modules.forEach(function (m) { -%>
+ *   - <%- m.name %> (<%- m.group %>:<%- m.artifact %>)
+<% }); -%>
+<% } -%>
+ */
+object ModuleRegistry {
+    fun initialize(context: Context) {
+<% if (modules.length === 0) { -%>
+        // No optional modules selected.
+<% } else { -%>
+<% modules.forEach(function (m) { -%>
+        // TODO: <%- m.name %> — call <%- m.artifact %> initializer once the framework API is wired.
+<% }); -%>
+<% } -%>
+    }
+}

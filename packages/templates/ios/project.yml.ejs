@@ -1,0 +1,38 @@
+# XcodeGen spec. Run `xcodegen generate` to produce the .xcodeproj.
+# Generating .xcodeproj by hand is brittle, so Mobile Initializr templates this spec instead.
+name: <%- appName %>
+options:
+  bundleIdPrefix: <%- bundleId %>
+  deploymentTarget:
+    iOS: "<%- minIos %>"
+
+packages:
+<% if (modules.length === 0) { -%>
+  {}
+<% } else { -%>
+<% modules.forEach(function (m) { -%>
+  <%- m.product %>:
+    url: <%- m.packageUrl %>
+    branch: main
+<% }); -%>
+<% } -%>
+
+targets:
+  <%- appName %>:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: <%- bundleId %>
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+    dependencies:
+<% if (modules.length === 0) { -%>
+      []
+<% } else { -%>
+<% modules.forEach(function (m) { -%>
+      - package: <%- m.product %>
+<% }); -%>
+<% } -%>

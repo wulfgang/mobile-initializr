@@ -1,0 +1,16 @@
+package <%- packageName %>
+
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+/**
+ * Application entry point. The company framework and selected modules are initialized here
+ * through [ModuleRegistry].
+ */
+@HiltAndroidApp
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        ModuleRegistry.initialize(this)
+    }
+}

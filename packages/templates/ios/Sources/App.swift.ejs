@@ -1,0 +1,17 @@
+import SwiftUI
+<% modules.forEach(function (m) { -%>
+import <%- m.product %>
+<% }); -%>
+
+@main
+struct <%- appName.replace(/[^A-Za-z0-9]/g, "") %>App: App {
+    init() {
+        ModuleRegistry.initialize()
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}

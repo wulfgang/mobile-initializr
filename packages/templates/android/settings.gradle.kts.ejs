@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // Company internal Maven repository hosting the mobile framework + modules.
+        // TODO: replace with the real internal repo URL and credentials wiring.
+        maven {
+            name = "companyInternal"
+            url = uri("https://maven.example.com/internal")
+        }
+    }
+}
+
+rootProject.name = "<%- appName %>"
+include(":app")
+include(":core")

@@ -1,0 +1,27 @@
+import Foundation
+<% modules.forEach(function (m) { -%>
+import <%- m.product %>
+<% }); -%>
+
+/// Central initialization point for the company framework modules selected when this
+/// project was generated.
+///
+/// Selected modules:
+<% if (modules.length === 0) { -%>
+///   (none)
+<% } else { -%>
+<% modules.forEach(function (m) { -%>
+///   - <%- m.name %> (<%- m.product %>)
+<% }); -%>
+<% } -%>
+enum ModuleRegistry {
+    static func initialize() {
+<% if (modules.length === 0) { -%>
+        // No optional modules selected.
+<% } else { -%>
+<% modules.forEach(function (m) { -%>
+        // TODO: <%- m.name %> — call <%- m.product %> initializer once the framework API is wired.
+<% }); -%>
+<% } -%>
+    }
+}

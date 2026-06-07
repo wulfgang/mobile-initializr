@@ -1,0 +1,29 @@
+{
+  "name": "@initializr/generator",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test --experimental-strip-types ./test/*.test.ts"
+  },
+  "dependencies": {
+    "@initializr/catalog": "workspace:*",
+    "@initializr/templates": "workspace:*",
+    "ejs": "^3.1.10",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.4"
+  }
+}
